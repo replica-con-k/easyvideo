@@ -11,33 +11,34 @@ _test_name = 'unknown'
 
 def start(test_name):
     global _test_name
-    logging.info('[START] test: %s' % test_name)
+    logging.info('[START] Test: %s' % test_name)
     _test_name = test_name
     
 
-def _end(self, message=None, quit=False, code=0):
-    logging.info('[ END ] test: %s%s' % (
-        _test_name,
-        (' (%s)' % message if message is not None else '')))
+def _end(quit=False, code=0):
     if quit:
         sys.exit(code)
 
 def ok(message=None):
-    _end(message)
+    msg = '' if message is None else (' (%s)' % message)
+    logging.info('[PASS ]%s' % msg)
+    _end()
 
 def failed(message, fail_code=-1):
-    _end(message, ENABLE_QUIT, fail_code)
+    logging.warning('[FAIL ] %s' % message)
+    _end(ENABLE_QUIT, fail_code)
 
 if __name__ == '__main__':    
-    logging.info('[ INF ] Run all tests...')
+    logging.info('Run all tests...')
 
     import glob
 
     python_files = set(glob.glob('*.py'))
     excludes = set(glob.glob('_*.py') + ['test.py'])
-    test_programs = python_files - excludes
+    test_programs = list(python_files - excludes)
+    test_programs.sort()
         
-    for program in list(test_programs):
+    for program in test_programs:
         execfile(program)
         
-    logging.info('[ INF ] Bye.')
+    logging.info('Bye.')
