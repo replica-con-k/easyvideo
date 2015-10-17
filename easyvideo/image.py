@@ -8,8 +8,9 @@ import pygame
 
 
 def load(filename):
-    '''Load image with alpha channel.'''
-    return pygame.image.load(filename).convert_alpha()
+    '''Load image with alpha channel (if it's possible).'''
+    image = pygame.image.load(filename)
+    return image if not pygame.display.get_init() else image.convert_alpha()
 
 
 def horizontal_flip(image):

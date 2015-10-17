@@ -118,7 +118,7 @@ class Animations(object):
         self.animations = {}
         self.__current = None
 
-    def add_animation(self, anim_name, animation, frame_skip=None):
+    def add(self, anim_name, animation, frame_skip=None):
         '''Add another animation to the container.'''
         self.animations[anim_name] = animation.copy
         if self.__current is None:
@@ -152,8 +152,8 @@ class Animations(object):
         '''Return a clone object (sharing frames references).'''
         result = Animations()
         for animation_name in self.animations.keys():
-            result.add_animation(animation_name,
-                                 self.animations[animation_name])
+            result.add(animation_name,
+                       self.animations[animation_name])
         result.change_animation(self.__current)
         return result
 
