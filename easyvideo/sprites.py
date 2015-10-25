@@ -12,7 +12,9 @@ class Sprite(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
-
+    def collide(self, targets):
+        return pygame.sprite.spritecollideany(self, targets)
+        
 class Group(pygame.sprite.Group):
     '''Wrapper for Group() class.'''
     def __init__(self):
