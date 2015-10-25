@@ -4,4 +4,4 @@
 
 '''Video handling using pygame.'''
 
-__all__ = ['screen', 'layer', 'animation', 'sprites']
+__all__ = ['screen', 'layer', 'animation', 'sprites', 'image']
