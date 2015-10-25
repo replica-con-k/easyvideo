@@ -16,3 +16,8 @@ def load(filename):
 def horizontal_flip(image):
     '''Perform horizontal flip to given image.'''
     return pygame.transform.flip(image, True, False)
+
+
+def vertical_flip(image):
+    '''Perform vertical flip to given image.'''
+    return pygame.transform.flip(image, False, True)

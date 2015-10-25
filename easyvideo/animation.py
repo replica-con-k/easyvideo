@@ -27,9 +27,18 @@ class FrameSet(object):
     @property
     def horizontal_flip(self):
         '''Return a horizontal-flipped FrameSet() object.'''
+        return self.__transform_frames__(easyvideo.image.horizontal_flip)
+
+    @property
+    def vertical_flip(self):
+        '''Return a vertical-flipped FrameSet() object.'''
+        return self.__transform_frames__(easyvideo.image.vertical_flip)
+
+    def __transform_frames__(self, transform_function):
+        '''Apply transformation function to frames.'''
         result = FrameSet()
         for frame in self.frames:
-            result.frames.append(easyvideo.image.horizontal_flip(frame))
+            result.frames.append(transform_function(frame))
         return result
 
 
